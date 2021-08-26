@@ -1,0 +1,524 @@
+﻿body {
+    background-color: #ccc;
+    color: #000;
+}
+a {
+    color: #eee;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#Page {
+    width: 100%;
+}
+
+#Middle {
+    clear: none;
+	min-width: 1024px;
+    overflow: auto;
+}
+
+#MainBody {
+    float: none;
+    width: auto;
+    padding: 0px 1em;
+	box-sizing: border-box;
+}
+
+/* Hall View */
+div.tv-container {
+    display: table;
+    padding: 4px 10px;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.summary-double-wrapper {
+    border-bottom: 2px solid;
+}
+.summary-double-wrapper:last-child {
+    border-bottom: 0px;
+}
+.summary-double-wrapper .tv-container:first-child {
+    border-right: 2px solid;
+}
+
+div.tv-container.summary-double {
+    float: left;
+    width: 50%;
+}
+
+    div.tv-container .FloatingBox {
+        display: inline-block;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+#HallViewImageContainer img {
+    max-width: 98%;
+    /*margin-top: 50px;*/
+}
+
+.tv-header {
+    margin: 5px 0;
+    padding-bottom: 0.2em;
+    width: 100%;
+    border-bottom: 2px solid;
+    text-align: center;
+    clear: both;
+    /*overflow: hidden;*/
+}
+
+    .tv-header h1 {
+        text-align: center;
+    }
+
+#Clock {
+    position: absolute;
+    left: 10px;
+    margin: 0;
+}
+
+.tv-container .left {
+    float: left;
+}
+
+.tv-container .center {
+    margin: 0 auto;
+}
+
+.tv-container .right {
+    float: right;
+}
+
+#HallViewImageContainer {
+    float: left;
+    position: relative;
+}
+
+#HallViewImageWrapper {
+    display: inline-block;
+}
+
+.HallViewAlarm {
+    position: absolute;
+    background-color: rgba(45, 0, 0, .4);
+    border: 4px solid rgba(255, 0, 0, .8);
+    border-radius: 4px;
+    display: none;
+    text-align: left;
+}
+
+.HallViewValues {
+    position: absolute;
+    background-color: rgba(40, 40, 20, 1);
+    border: 4px solid rgba(200, 200, 140, .8);
+    border-radius: 4px;
+    text-align: left;
+    width: 12%;
+    color: white;
+}
+
+.tv-header {
+    margin: 0;
+    /*padding: 5px 0;*/
+    text-align: center;
+    background-color: white;
+}
+
+    .tv-header h1 {
+        display: inline-block;
+        margin: 0 auto;
+        font-size: 40px;
+        font-weight: bold;
+        max-width: 80%;
+    }
+
+.HallViewValue {
+    padding: 3px 5px;
+}
+
+    .HallViewValue span {
+        font-weight: bold;
+    }
+
+.HallViewAlarm > span.Priority {
+    color: white;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding: 0.1em 0.5em;
+}
+
+.HallViewControl {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    background-color: white;
+    position: absolute;
+    color: black;
+    font-weight: bold;
+}
+
+/* Hall View Machines - ZWM */
+
+#HallView301 {
+    width: 12.2%;
+    height: 24%;
+    left: 3%;
+    top: 57%;
+}
+
+#HallView301Control {
+    left: 9%;
+    top: 66%;
+}
+
+#HallView302 {
+    width: 12%;
+    height: 16%;
+    left: 2%;
+    top: 82%;
+}
+
+#HallView302Control {
+    left: 8%;
+    top: 87%;
+}
+
+#HallView303 {
+    width: 6%;
+    height: 15%;
+    left: 15.3%;
+    top: 84%;
+}
+
+#HallView303Control {
+    left: 18%;
+    top: 89%;
+}
+
+#HallView304 {
+    width: 10.1%;
+    height: 43%;
+    left: 24.4%;
+    top: 29.6%;
+}
+
+#HallView304Control {
+    left: 29%;
+    top: 45%;
+}
+
+#HallView310 {
+    width: 6.6%;
+    height: 21%;
+    left: 18%;
+    top: 56%;
+}
+
+#HallView310Control {
+    left: 21%;
+    top: 60%;
+}
+
+#HallView311 {
+    width: 6.6%;
+    height: 21%;
+    left: 18%;
+    top: 56%;
+}
+
+#HallView311Control {
+    left: 22.8%;
+    top: 60%;
+}
+
+
+/* /Hall View Machines */
+
+#BlinkElement, #GetAlarms {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#HallViewAlarmsContainer {
+    text-align: center;
+    margin: 30px 10px;
+}
+
+    #HallViewAlarmsContainer table {
+        /* text-align: left; */
+        float: left;
+        border: 2px #ccc;
+        width: 800px;
+        font-size: 14px;
+    }
+
+    #HallViewAlarmsContainer #HallViewAlarmsGaiotto {
+        margin-right: 5em;
+    }
+
+    #HallViewAlarmsContainer #HallViewStatuses {
+        position: absolute;
+        bottom: 0;
+        left: 1em;
+        color: black;
+        font-weight: bold;
+        width: 20%;
+    }
+
+    #HallViewAlarmsContainer #HallViewZwmStatuses {
+        position: absolute;
+        bottom: 0;
+        right: 1em;
+        color: black;
+        font-weight: bold;
+        width: 20%;
+    }
+
+    #HallViewAlarmsContainer #HallViewStatuses tr td {
+        border: 0;
+        padding: 2px;
+        background-color: white;
+    }
+
+    #HallViewAlarmsContainer #HallViewZwmStatuses tr td {
+        border: 0;
+        padding: 2px;
+        background-color: white;
+    }
+
+    #HallViewAlarmsContainer table#HallViewAlarms th,
+    #HallViewAlarmsContainer table#HallViewAlarms td {
+        font-size: 1.4em;
+    }
+
+    #HallViewAlarmsContainer table th[colspan] {
+        text-align: center;
+    }
+
+
+
+#HallViewImageContainer img {
+    width: auto;
+}
+
+#HallViewAlarmsContainer table#HallViewAlarms tbody td {
+    background-color: #660E08;
+}
+
+#LeftLogo {
+    float: left;
+    display: block;
+    width: 100px;
+    height: 37px;
+    margin: 6px;
+    background-image: url("/images/diehl_metering_small.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#RightLogo {
+    float: right;
+    display: block;
+    width: 100px;
+    height: 37px;
+    margin: 6px;
+    background-image: url("/images/smart_in_solutions_small.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.HallViewControl {
+    border: 2px solid #fff;
+}
+
+#PoweredByLogo {
+    /* width: 193px; */
+    height: 70px;
+    background-image: url("/images/ACaRSWebTransparent.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#PoweredByLogoAbsolute {
+    width: 193px;
+    height: 70px;
+    background-image: url("/images/ACaRSWebTransparent.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* DIEHL Machine Progress */
+
+.summary-double-wrapper {
+    overflow: hidden;
+}
+
+#MachineInfo {
+    /*margin: 10px auto;*/
+    /*background-color: #eee;*/
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    /*overflow: hidden;*/
+}
+
+    #MachineInfo table {
+        /*margin: 0 auto;*/
+        display: inline-table;
+        width: 50%;
+    }
+
+        #MachineInfo table tr td {
+            padding-right: 1em;
+            text-align: left;
+        }
+
+        #MachineInfo table tr td:first-child {
+            width: 40%;
+        }
+
+        #MachineInfo table tr {
+            height: 1em;
+        }
+
+        #MachineInfo table .trim {
+            max-height: 1.2em;
+            overflow: hidden;
+        }
+
+#Indicators {
+    /*margin-top: 60px;*/
+    width: 50%;
+    font-size: 20px;
+}
+    #Indicators a {
+        text-decoration:none;
+        color: black;
+    }
+
+    #Indicators .stand-name {
+        width: 40%;
+        margin: 3px auto;
+        padding: 2px;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    #Indicators h3 {
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    #Indicators span.indicator {
+        font-size: 1.6em;
+        font-weight: bold;
+    }
+
+    #Indicators div.indicator {
+        width: 50%;
+    }
+
+#ImportantInfo {
+    font-size: 40px;
+    color: #a55;
+}
+
+#ProgressBarSection {
+    width: 100%;
+    clear: both;
+    margin: 5px 0;
+}
+
+    #ProgressBarSection .ProgressBar {
+        height: 30px;
+        border: 3px solid black;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #ProgressBarSection .header {
+        margin: 0.2em 0;
+        /*font-size: 2em;*/
+        /*font-weight: bold;*/
+        /*overflow: hidden;*/
+    }
+
+    #ProgressBarSection .footer {
+        margin: 0.5em 0;
+        font-size: 2em;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+.ProgressBar .Progress {
+    height: 100%;
+}
+
+    .ProgressBar .Progress.green {
+        background-color: green;
+        background-image: linear-gradient(to top, #462, #492);
+    }
+
+    .ProgressBar .Progress.yellow {
+        background-color: orange;
+        background-image: linear-gradient(to top, #cc7a00, #f90);
+    }
+
+    .ProgressBar .Progress.red {
+        background-color: red;
+        background-image: linear-gradient(to top, #a00, #c00);
+    }
+
+
+.ProgressBar .CurrentValue,
+.ProgressBar .RequiredValue {
+    margin-top: 23px;
+    padding: 0.1em 0.6em;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #eee;
+    font-size: 25px;
+}
+
+.ProgressBar .CurrentValue {
+    margin-left: 15px;
+}
+
+.ProgressBar .RequiredSection {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ProgressBar .RequiredValue {
+    margin-left: 15px;
+}
+
+.ProgressBar .RequiredValueBar {
+    border-right: 5px solid black;
+    height: 100%;
+}
+
+.ProgressBar .required-value-indicator {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 6px solid black;
+}

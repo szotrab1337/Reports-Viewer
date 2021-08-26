@@ -1,0 +1,142 @@
+﻿@using Microsoft.Reporting.WebForms;
+@model List<ReportParameterInfo>
+@{
+    string ParamsWidth = ((bool)ViewData["Horizontal"] ? 4 : 12).ToString();
+    string Message = string.Empty;
+    int Id = 0, DateFields = 0;
+}
+<h4 class="mb-3">Parametry raportu</h4>
+@foreach (ReportParameterInfo Parameter in Model)
+{
+    bool IsList = Parameter.ValidValues != null;
+    bool IsBool = Parameter.DataType == ParameterDataType.Boolean;
+    bool IsDate = Parameter.DataType == ParameterDataType.DateTime;
+    bool IsString = Parameter.DataType == ParameterDataType.String;
+    <div class="col-@ParamsWidth">
+        @{
+
+            string HasDependents = Parameter.Dependents.Count > 0 ? "1" : "0";
+            List<string> Dependencies = new List<string>();
+            if (Parameter.Dependencies.Count > 0)
+            {
+                foreach (ReportParameterInfo PI in Parameter.Dependencies)
+                {
+                    Dependencies.Add(PI.Name.ToLower());
+                }
+            }
+        }
+        <div class="form-group">
+            @if (IsList)
+            {
+                <label class=" form-control-label">@Parameter.Prompt</label>
+                <div class="input-group">
+                    <select data-placeholder="Wybierz @Parameter.Prompt.ToLower()..." @if (Parameter.MultiValue) { <text> multiple</text> }
+                            class="standardSelect report-parameter"
+                            data-dependents="@HasDependents"
+                            data-dependencies="@string.Join(",", Dependencies.ToArray())"
+                            data-changed="0"
+                            name="@Parameter.Name.ToLower()"
+                            id="@Parameter.Name.ToLower()">
+                        @foreach (ValidValue Option in Parameter.ValidValues)
+                        {
+                            <option value="@Option.Value" @if (Parameter.Values.Contains(Option.Value)) { <text> selected</text> }>
+                                @Option.Label
+                            </option>
+                        }
+                    </select>
+                </div>
+            }
+            else if (IsBool)
+            {
+                <div class="row">
+                    <div class="col-8">
+                        <label class=" form-control-label">@Parameter.Prompt</label>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <label class="switch switch-3d switch-primary mr-3">
+                                <input type="checkbox"
+                                       class="switch-input report-parameter form-check-input"
+                                       data-dependents="@HasDependents"
+                                       data-dependencies="@string.Join(",", Dependencies.ToArray())"
+                                       data-changed="0"
+                                       data-prevvalue="@if (Parameter.Values != null && Parameter.Values.Count > 0)
+                                               { <text>1</text> }
+                                               else
+                                               { <text>0</text> }"
+                                       @if (Parameter.Values != null && Parameter.Values.Count > 0) { <text> checked</text> }
+                                       id="@Parameter.Name.ToLower()"
+                                       name="@Parameter.Name.ToLower()">
+                                <span class="switch-label"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <label class=" form-control-label">@Parameter.Prompt</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        @if (Parameter.Name == "DateFrom" || Parameter.Name == "From" || Parameter.Name == "StartDate")
+                        {<i style="border: 0 0 0 1px solid;" class="ti ti-shift-left"></i>}
+                        @if (IsDate)
+                        {
+                        <i class="fa fa-calendar"></i>
+                        }
+                        else
+                        {
+                        <i class="fa fa-sticky-note-o"></i>
+                        }
+                        @if (Parameter.Name == "DateTo" || Parameter.Name == "To" || Parameter.Name == "EndDate")
+                        {<i style="border: 0 0 0 1px solid;" class="ti ti-shift-right"></i>}
+                    </div>
+                    <input class="form-control report-parameter
+                           @if (IsDate) {
+                               <text>datetimepicker datetimepicker-input</text>
+                               DateFields++;
+                           }" 
+                           @if (IsDate) { 
+                               <text> data-toggle="datetimepicker" data-target="#@Parameter.Name.ToLower()" </text> 
+                           }
+                           name="@Parameter.Name.ToLower()"
+                           id="@Parameter.Name.ToLower()"
+                           value="@if (Parameter.Values != null && Parameter.Values.Count > 0)
+                                   {
+                        DateTime Date = DateTime.MinValue;
+                        if (Parameter.DataType == ParameterDataType.DateTime && DateTime.TryParse(@Parameter.Values[0], out Date))
+                        { @Date.ToString(); } @*@"yyyy-MM-dd HH:mm:ss"*@
+                                    else
+                                    { @Parameter.Values[0] }
+                                }"
+                           data-dependents="@HasDependents"
+                           data-dependencies="@string.Join(",", Dependencies.ToArray())"
+                           data-changed="0"
+                           data-prevvalue="@if (Parameter.Values != null && Parameter.Values.Count > 0)
+                                   { @Parameter.Values[0] }">
+                </div>
+            }
+            @if (IsDate)
+            {
+                <small class="form-text text-muted">np. 2018-06-21 16:44:25</small>
+            }
+        </div>
+    </div>
+                Id++;
+            }
+<div class="col-12">
+    <div class="btn btn-success" id="ReportReload" style="margin-left: 0px; margin-right: 20px;">Załaduj</div>
+
+    <div class="btn btn-primary dropdown">
+        <span class="dropdown-toggle" data-toggle="dropdown" id="ReportExport" href="#" role="button" aria-haspopup="true" aria-expanded="false">Eksportuj do...<span class="caret"></span></span>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item ReportExport" data-format="EXCEL" href="#">Excel</a>
+            <a class="dropdown-item ReportExport" data-format="WORD" href="#">Word</a>
+            <a class="dropdown-item ReportExport" data-format="PDF" href="#">PDF</a>
+            <a class="dropdown-item ReportExport" data-format="CSV" href="#">CSV</a>
+            <a class="dropdown-item ReportExport" data-format="XML" href="#">XML</a>
+            <a class="dropdown-item ReportExport" data-format="IMAGE" href="#">Obraz</a>
+        </div>
+    </div>
+</div>

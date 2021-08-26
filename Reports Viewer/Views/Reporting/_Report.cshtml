@@ -1,0 +1,56 @@
+﻿@using Microsoft.Reporting.WebForms
+@model List<ReportParameterInfo>
+    @{
+        string ParamsWidth = ((bool)ViewData["Horizontal"] ? 12 : 4).ToString(),
+            ReportWidth = ((bool)ViewData["Horizontal"] ? 12 : 8).ToString();
+    }
+<form id="ReportForm">
+    <div class="row">
+        <div class="col-lg-@ParamsWidth" style="position: relative;">
+                <div class="card" style="min-height: 250px;">
+                    <div class="card-body" id="ReportParameters" data-last-change="">
+                        <div class="loader loader-primary" id="ParametersLoader">
+                            <div class="card">
+                                <div class="card-body">
+                                    Aktualizowanie parametrów...<br /><br />
+                                    <image src="/images/loader.gif" style="vertical-align: middle;" />
+                                </div>
+                            </div>
+                        </div>
+                        @Html.Partial("_ReportParameters", Model)
+                    </div>
+                </div><!-- /# column -->
+            </div>
+
+            <div class="col-lg-@ReportWidth">
+                <div class="card">
+                    <div class="card-header" style="display: table; width: 100%;">
+                        <div id="ReportPageControls" style="margin: 0 auto 5px auto; display: table-cell; vertical-align: middle; text-align:center">
+                            <div class="btn btn-dark disabled" id="ReportPageFirst"><i class="ti ti-shift-left"></i></div>
+                            <div class="btn btn-dark disabled" id="ReportPagePrevious"><i class="fa ti-arrow-left"></i></div>
+                            <div class="report-page-input" style="margin: 0 2em; display: inline-block;">
+                                <span>Strona</span>
+                                <input id="CurrentPage" value="1" style="width: 3em; text-align: center;" />
+                                z
+                                <span id="PageCount">1</span>
+                            </div>
+                            <div class="btn btn-dark disabled" id="ReportPageNext"><i class="ti ti-arrow-right"></i></div>
+                            <div class="btn btn-dark disabled" id="ReportPageLast"><i class="ti ti-shift-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="min-height: 250px; position: relative">
+                        <div class="loader loader-primary" id="ReportLoader" style="background-color: rgba(0, 0, 0, 0); display: block;">
+                            <div class="card">
+                                <div class="card-body">
+                                    Ładowanie...<br /><br />
+                                    <image src="/images/loader.gif" style="vertical-align: middle;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: none;" id="ReportName" data-name="@ViewData["ReportName"]"></div>
+                        <iframe id="Report" src="/ReportViewerAsync.aspx?reportname=@ViewData["ReportName"]" class="report-viewer" stlye="border: 0;" frameborder="0" width="100%"></iframe>
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+</form>

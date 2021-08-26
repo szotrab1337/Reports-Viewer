@@ -1,0 +1,146 @@
+﻿/* ACaRS Custom Styles */
+.for-notification .dropdown-menu p {
+    color: black;
+}
+
+.menu-title a {
+    display: block;
+    color: #9496a1;
+    transition: none;
+}
+    .menu-title a:hover {
+        color: #9496a1;
+    }
+    .menu-title a:visited {
+        color: #9496a1;
+    }
+
+
+.navbar-nav li a:hover {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -ms-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    background-color: rgba(200, 200, 200, 0.1);
+}
+
+.navbar .navbar-nav li.menu-item-has-children a.menu-toggle::before {
+    right: 0;
+}
+
+.navbar .navbar-nav li.menu-item-has-children a.menu-toggle {
+    line-height: unset;
+}
+
+.card-footer.button-modal {
+    text-align: right;
+}
+
+.modal.description {
+    text-align: right;
+}
+
+.menu-title i.fa {
+    margin-right: 10px;
+}
+
+/* Scheduler */
+
+#ScheduleNavigation {
+    text-align: center;
+    /* margin-left: 30%; */
+    overflow: hidden;
+}
+
+    #ScheduleNavigation .FloatingBox,
+    #ScheduleContainer .FloatingBox {
+        margin: 0 auto;
+        display: inline-block;
+    }
+    /*
+    #ScheduleNavigation .ControlButton,
+    #ScheduleNavigation .MonthName {
+        margin: 0 auto;
+        float: left;
+    }
+        */
+        #ScheduleNavigation .ControlButton a {
+            display: block;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            color: black;
+            padding: 1em;
+            margin: 0 2em;
+            background-color: #f4f4f4;
+        }
+
+            #ScheduleNavigation .ControlButton a:hover {
+                text-decoration: none;
+            }
+
+#ScheduleContainer {
+    text-align: center;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+}
+
+.loader .card {
+    width: 80%;
+    max-width: 300px;
+    min-height: 50px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -5%);
+    -webkit-transform: translate(-50%, -5%);
+    text-align: center;
+    z-index: 100;
+}
+
+.loader-aux {
+    background: url("/images/loader-aux.gif") no-repeat center center;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* DIEHL Specific Rules */
+
+.card h4 {
+    margin: 1em 0;
+}
+
+.model-list-table td:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.timepicker .input-group-addon {
+    /*cursor: pointer;*/
+}
+
+#TestForm .row {
+    margin: 0.5em 0;
+}
+
+#Clock {
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0;
+    text-align: right;
+}
+tr#Form .row {
+    margin: 5px 0;
+}
+
+.right-panel {
+    display: block !important;
+}
